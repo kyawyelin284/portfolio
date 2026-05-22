@@ -1,14 +1,19 @@
 import type { ReactNode } from "react"
 import {
   ArrowUpRight,
+  Blocks,
+  Brain,
+  Code2,
   GraduationCap,
   Link2,
   Mail,
   MapPin,
   Phone,
-  Sparkles,
+  Rocket,
 } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
+import { HeroScene } from "@/components/hero-scene"
+import { Reveal } from "@/components/reveal"
+import { SkillsBento } from "@/components/skills-bento"
 import { buttonVariants } from "@/components/ui/button"
 import {
   Card,
@@ -24,21 +29,26 @@ import {
   experience,
   person,
   projects,
-  skillGroups,
   summary,
 } from "@/data/resume"
+import { pageShellClass } from "@/lib/layout"
 import { cn } from "@/lib/utils"
+
+const projectIcons = {
+  "T-Station": Brain,
+  "Hankook Tire": Rocket,
+  "Blockchain Lure": Blocks,
+  Nura: Code2,
+} as const
 
 function Section({
   id,
   title,
-  eyebrow,
   children,
   className,
 }: {
   id: string
   title: string
-  eyebrow: string
   children: ReactNode
   className?: string
 }) {
@@ -46,18 +56,18 @@ function Section({
     <section
       id={id}
       aria-labelledby={`${id}-heading`}
-      className={cn("scroll-mt-28 py-14 sm:py-20", className)}
+      className={cn("scroll-mt-32 py-8 sm:py-10", className)}
     >
-      <div className="mx-auto max-w-5xl px-4 sm:px-6">
-        <p className="text-primary mb-2 text-xs font-semibold uppercase tracking-[0.2em]">
-          {eyebrow}
-        </p>
-        <h2
-          id={`${id}-heading`}
-          className="font-heading text-foreground mb-8 text-2xl font-semibold tracking-tight sm:text-3xl"
-        >
-          {title}
-        </h2>
+      <div className={pageShellClass}>
+        <Reveal>
+          <h2
+            id={`${id}-heading`}
+            className="font-heading text-foreground mb-6 text-3xl font-semibold tracking-tight sm:text-4xl"
+          >
+            <span className="section-title-accent">{title.slice(0, 2)}</span>
+            {title.slice(2)}
+          </h2>
+        </Reveal>
         {children}
       </div>
     </section>
@@ -67,298 +77,315 @@ function Section({
 export function PortfolioPage() {
   return (
     <>
-      <div className="pointer-events-none fixed inset-0 z-0 gradient-mesh" aria-hidden />
+      <div className="scene-backdrop" aria-hidden>
+        <div className="scene-backdrop__grid" />
+        <div className="scene-backdrop__glow scene-backdrop__glow--hero" />
+        <div className="scene-backdrop__glow scene-backdrop__glow--center" />
+        <div className="scene-backdrop__glow scene-backdrop__glow--footer" />
+      </div>
       <div className="noise" aria-hidden />
 
       <div className="relative z-10">
         <section
           id="top"
-          className="relative flex min-h-[min(88svh,880px)] flex-col justify-center px-4 pb-16 pt-28 sm:px-6"
+          className={cn("relative pb-8 pt-32 sm:pb-10", pageShellClass)}
         >
-          <div className="mx-auto w-full max-w-5xl">
-            <p className="text-primary mb-4 inline-flex items-center gap-2 text-sm font-medium">
-              <Sparkles className="size-4" aria-hidden />
-              Software & blockchain engineering
-            </p>
-            <h1 className="font-heading text-foreground max-w-3xl text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl md:text-6xl">
-              <span className="gradient-text">Kyaw Ye Lin</span>
-              <span className="text-foreground mt-2 block text-2xl font-normal text-balance sm:text-3xl md:mt-3">
-                Building reliable systems—APIs, chains, and products people can trust.
-              </span>
-            </h1>
-            <p className="text-muted-foreground mt-6 max-w-2xl text-pretty text-base leading-relaxed sm:text-lg">
-              {summary}
-            </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a
-                href="#projects"
-                className={cn(
-                  buttonVariants({ size: "lg" }),
-                  "ring-focus min-h-11 px-5"
-                )}
+          <div className="grid w-full items-center gap-8 lg:grid-cols-2 lg:gap-10 xl:gap-12">
+            <div>
+              <p
+                className="neon-badge animate-hero-enter mb-5"
+                style={{ animationDelay: "80ms" }}
               >
-                View projects
-              </a>
-              <a
-                href="mailto:kyawyelin@proton.me"
-                className={cn(
-                  buttonVariants({ variant: "outline", size: "lg" }),
-                  "ring-focus min-h-11 border-border/60 bg-card/40 px-5"
-                )}
+                {person.title} · Software, Blockchain & AI
+              </p>
+              <h1 className="font-heading text-5xl font-semibold leading-[1.06] tracking-tight sm:text-6xl md:text-7xl">
+                <span
+                  className="text-foreground animate-hero-enter block"
+                  style={{ animationDelay: "160ms" }}
+                >
+                  Building the
+                </span>
+                <span
+                  className="gradient-text animate-hero-enter block"
+                  style={{ animationDelay: "220ms" }}
+                >
+                  Future of Web3 & AI
+                </span>
+              </h1>
+              <p
+                className="text-muted-foreground animate-hero-enter mt-6 max-w-3xl text-pretty text-lg leading-relaxed lg:max-w-none sm:text-xl"
+                style={{ animationDelay: "300ms" }}
               >
-                <Mail className="size-4" />
-                Email
-              </a>
-              <a
-                href={person.linkedIn}
-                target="_blank"
-                rel="noreferrer noopener"
-                className={cn(
-                  buttonVariants({ variant: "ghost", size: "lg" }),
-                  "ring-focus text-muted-foreground hover:text-foreground"
-                )}
+                {summary}
+              </p>
+              <div
+                className="animate-hero-enter mt-8 flex flex-wrap items-center gap-3"
+                style={{ animationDelay: "380ms" }}
               >
-                LinkedIn
-                <ArrowUpRight className="size-4" />
-              </a>
+                <a
+                  href="#projects"
+                  className={cn(
+                    buttonVariants({ size: "lg" }),
+                    "ring-focus neon-button min-h-12 px-6 text-base"
+                  )}
+                >
+                  View projects
+                  <ArrowUpRight className="size-5" />
+                </a>
+                <a
+                  href="mailto:kyawyelin@proton.me"
+                  className={cn(
+                    buttonVariants({ variant: "outline", size: "lg" }),
+                    "ring-focus neon-outline-button min-h-12 px-6 text-base"
+                  )}
+                >
+                  Contact me
+                </a>
+              </div>
+              <dl
+                className="text-muted-foreground animate-hero-enter mt-8 flex flex-wrap gap-x-8 gap-y-3 text-base"
+                style={{ animationDelay: "460ms" }}
+              >
+                <div className="flex items-center gap-2.5">
+                  <MapPin className="text-primary size-5 shrink-0" aria-hidden />
+                  <dt className="sr-only">Location</dt>
+                  <dd>{person.location}</dd>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <Phone className="text-primary size-5 shrink-0" aria-hidden />
+                  <dt className="sr-only">Phone</dt>
+                  <dd>
+                    <a
+                      href={`tel:${person.phone.replace(/\s/g, "")}`}
+                      className="ring-focus rounded-sm underline-offset-4 hover:text-primary hover:underline"
+                    >
+                      {person.phone}
+                    </a>
+                  </dd>
+                </div>
+              </dl>
             </div>
-            <dl className="text-muted-foreground mt-12 flex flex-wrap gap-x-8 gap-y-3 text-sm">
-              <div className="flex items-center gap-2">
-                <MapPin className="text-primary size-4 shrink-0" aria-hidden />
-                <dt className="sr-only">Location</dt>
-                <dd>{person.location}</dd>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="text-primary size-4 shrink-0" aria-hidden />
-                <dt className="sr-only">Phone</dt>
-                <dd>
-                  <a
-                    href={`tel:${person.phone.replace(/\s/g, "")}`}
-                    className="ring-focus rounded-sm underline-offset-4 hover:underline"
-                  >
-                    {person.phone}
-                  </a>
-                </dd>
-              </div>
-            </dl>
+
+            <HeroScene className="hidden lg:block" />
           </div>
         </section>
 
-        <Section id="about" title="About" eyebrow="Profile">
-          <div className="glass-panel max-w-3xl rounded-2xl p-6 sm:p-8">
-            <p className="text-foreground/90 text-base leading-relaxed sm:text-lg">
-              I design and ship software end to end: clear data models, pragmatic APIs, and interfaces
-              that stay out of the way. My background spans backend services, blockchain integration, and
-              embedded work—so I can reason about the full stack when performance or reliability matters.
-            </p>
-            <Separator className="my-6 bg-border/60" />
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              When I am not shipping, I explore language design and distributed systems—always with an eye
-              on security, observability, and long-term maintainability.
-            </p>
-          </div>
+        <Section id="about" title="About">
+          <Reveal delay={80}>
+            <div className="glass-panel glow-card w-full rounded-2xl p-6 sm:p-8">
+              <p className="text-foreground/90 text-lg leading-relaxed sm:text-xl">
+                I design and ship software end to end—custom applications, optimized backend
+                architecture, and intelligent AI automation. My background spans mobile development,
+                decentralized systems, firmware, and cloud infrastructure, so I can reason across the
+                full stack when performance or reliability matters.
+              </p>
+              <Separator className="my-6 bg-border/60" />
+              <p className="text-muted-foreground text-base leading-relaxed">
+                I lead cross-functional teams to deliver high-quality, scalable solutions—whether that
+                means smart contracts, real-time AI inference, or language design projects like Nura.
+              </p>
+            </div>
+          </Reveal>
         </Section>
 
-        <Section id="experience" title="Experience" eyebrow="Career">
-          <ol className="relative space-y-6 border-l border-border/60 pl-6">
-            {experience.map((job) => (
-              <li key={job.id} className="relative">
+        <Section id="experience" title="Experience">
+          <ol className="experience-list list-none">
+            {experience.map((job, index) => (
+              <li key={job.id} className="experience-item">
                 <span
-                  className="bg-primary ring-background absolute -left-[25px] top-1.5 size-3 rounded-full ring-4"
+                  className="experience-node"
                   aria-hidden
+                  style={{ animationDelay: `${index * 0.4}s` }}
                 />
-                <Card className="glass-panel border-border/50 transition-[box-shadow,transform] duration-200 hover:shadow-lg hover:shadow-primary/5">
-                  <CardHeader className="gap-2">
-                    <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <CardTitle className="text-lg sm:text-xl">{job.role}</CardTitle>
-                      <Badge variant="secondary" className="font-normal">
+                <Reveal delay={index * 70}>
+                  <article className="experience-card">
+                    <div className="experience-card__header">
+                      <div>
+                        <h3 className="experience-card__company">{job.company}</h3>
+                        <p className="experience-card__role">{job.role}</p>
+                      </div>
+                      <time className="experience-card__period" dateTime={job.period}>
                         {job.period}
-                      </Badge>
+                      </time>
                     </div>
-                    <CardDescription className="text-foreground/90 text-base font-medium">
-                      {job.company}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-2 pt-0">
-                    <ul className="text-muted-foreground list-inside list-disc space-y-1.5 text-sm leading-relaxed sm:text-[0.95rem]">
-                      {job.highlights.map((line) => (
-                        <li key={line} className="pl-0.5">
-                          {line}
-                        </li>
+                    <p className="experience-card__description">{job.description}</p>
+                    <div className="experience-card__tags">
+                      {job.tags.map((tag) => (
+                        <span key={tag} className="neon-tag">
+                          {tag}
+                        </span>
                       ))}
-                    </ul>
-                  </CardContent>
-                </Card>
+                    </div>
+                  </article>
+                </Reveal>
               </li>
             ))}
           </ol>
         </Section>
 
-        <Section id="skills" title="Skills" eyebrow="Stack">
-          <div className="grid gap-4 sm:grid-cols-2">
-            {skillGroups.map((group) => (
-              <Card
-                key={group.name}
-                className="glass-panel h-full border-border/50"
-              >
-                <CardHeader>
-                  <CardTitle className="text-base">{group.name}</CardTitle>
-                </CardHeader>
-                <CardContent className="flex flex-wrap gap-2 pt-0">
-                  {group.items.map((skill) => (
-                    <Badge
-                      key={skill}
-                      variant="outline"
-                      className="border-primary/30 bg-primary/5 font-normal"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </Section>
+        <Section id="projects" title="Featured projects">
+          <ul className="project-grid grid gap-4 md:grid-cols-2 md:items-stretch">
+            {projects.map((project, index) => {
+              const Icon = projectIcons[project.name as keyof typeof projectIcons] ?? Code2
 
-        <Section id="projects" title="Projects" eyebrow="Selected work">
-          <ul className="grid gap-4 md:grid-cols-2">
-            {projects.map((project) => (
-              <li key={project.name}>
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="ring-focus group block h-full"
-                >
-                  <Card className="glass-panel h-full border-border/50 transition duration-200 group-hover:border-primary/30 group-hover:shadow-md group-hover:shadow-primary/5">
-                    <CardHeader>
-                      <div className="flex items-start justify-between gap-2">
-                        <CardTitle className="text-lg group-hover:text-primary">
-                          {project.name}
-                        </CardTitle>
-                        <ArrowUpRight
-                          className="text-muted-foreground group-hover:text-primary size-5 shrink-0 transition-colors"
-                          aria-hidden
-                        />
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        {project.description}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </a>
-              </li>
-            ))}
+              return (
+                <li key={project.name} className="h-full">
+                  <Reveal delay={index * 70} className="h-full">
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="ring-focus group flex h-full"
+                    >
+                      <Card className="project-card glass-panel glow-card h-full w-full border-border/50">
+                        <CardHeader className="gap-4">
+                          <div className="flex items-start justify-between gap-3">
+                            <span className="project-icon">
+                              <Icon className="size-6" aria-hidden />
+                            </span>
+                            <ArrowUpRight
+                              className="text-muted-foreground size-6 shrink-0 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"
+                              aria-hidden
+                            />
+                          </div>
+                          <CardTitle className="text-xl transition-colors group-hover:text-primary">
+                            {project.name}
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex flex-1 flex-col pt-0">
+                          <p className="text-muted-foreground flex-1 text-base leading-relaxed">
+                            {project.description}
+                          </p>
+                          <div className="mt-5 flex flex-wrap gap-2">
+                            {project.tags.map((tag) => (
+                              <span key={tag} className="neon-tag">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </a>
+                  </Reveal>
+                </li>
+              )
+            })}
           </ul>
         </Section>
 
-        <Section id="education" title="Education & certifications" eyebrow="Background">
+        <Section id="skills" title="Skills">
+          <SkillsBento />
+        </Section>
+
+        <Section id="education" title="Education & certifications">
           <div className="grid gap-8 lg:grid-cols-2">
-            <div>
-              <h3 className="text-foreground mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider">
-                <GraduationCap className="text-primary size-4" aria-hidden />
-                Education
-              </h3>
-              <ul className="space-y-4">
-                {education.map((row) => (
-                  <li key={row.school}>
-                    <Card className="glass-panel border-border/50" size="sm">
-                      <CardHeader className="pb-2">
-                        <div className="flex flex-wrap items-baseline justify-between gap-2">
-                          <CardTitle className="text-sm sm:text-base">{row.school}</CardTitle>
-                          <span className="text-muted-foreground text-xs tabular-nums">
-                            {row.period}
-                          </span>
+            <Reveal delay={60}>
+              <div>
+                <h3 className="text-foreground mb-4 flex items-center gap-2.5 text-base font-semibold uppercase tracking-wider">
+                  <GraduationCap className="text-primary size-5" aria-hidden />
+                  Education
+                </h3>
+                <ul className="space-y-4">
+                  {education.map((row) => (
+                    <li key={row.school}>
+                      <Card className="glass-panel glow-card border-border/50" size="sm">
+                        <CardHeader className="pb-2">
+                          <div className="flex flex-wrap items-baseline justify-between gap-2">
+                            <CardTitle className="text-base sm:text-lg">{row.school}</CardTitle>
+                            <span className="text-muted-foreground text-sm tabular-nums">
+                              {row.period}
+                            </span>
+                          </div>
+                          <CardDescription>{row.credential}</CardDescription>
+                        </CardHeader>
+                      </Card>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+            <Reveal delay={120}>
+              <div>
+                <h3 className="text-foreground mb-4 flex items-center gap-2.5 text-base font-semibold uppercase tracking-wider">
+                  <Link2 className="text-primary size-5" aria-hidden />
+                  Certifications
+                </h3>
+                <ul className="space-y-3">
+                  {certifications.map((c) => (
+                    <li key={c.url}>
+                      <a
+                        href={c.url}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="ring-focus glow-card group flex items-start gap-3 rounded-xl border border-border/50 bg-card/30 p-4 backdrop-blur-sm"
+                      >
+                        <div className="min-w-0 flex-1">
+                          <p className="text-foreground text-base font-medium leading-snug transition-colors group-hover:text-primary">
+                            {c.title}
+                          </p>
+                          <p className="text-muted-foreground mt-1 text-sm">{c.org}</p>
                         </div>
-                        <CardDescription>{row.credential}</CardDescription>
-                      </CardHeader>
-                    </Card>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-foreground mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider">
-                <Link2 className="text-primary size-4" aria-hidden />
-                Certifications
-              </h3>
-              <ul className="space-y-3">
-                {certifications.map((c) => (
-                  <li key={c.url}>
-                    <a
-                      href={c.url}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="ring-focus group flex items-start gap-3 rounded-xl border border-border/50 bg-card/30 p-4 transition duration-200 hover:border-primary/25 hover:bg-card/50"
-                    >
-                      <div className="min-w-0 flex-1">
-                        <p className="text-foreground group-hover:text-primary text-sm font-medium leading-snug">
-                          {c.title}
-                        </p>
-                        <p className="text-muted-foreground mt-1 text-xs">{c.org}</p>
-                      </div>
-                      <ArrowUpRight
-                        className="text-muted-foreground group-hover:text-primary mt-0.5 size-4 shrink-0"
-                        aria-hidden
-                      />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+                        <ArrowUpRight
+                          className="text-muted-foreground mt-0.5 size-5 shrink-0 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"
+                          aria-hidden
+                        />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
           </div>
         </Section>
 
         <section
           id="contact"
           aria-labelledby="contact-heading"
-          className="scroll-mt-28 pb-20 pt-4 sm:pb-24"
+          className="scroll-mt-32 pb-12 pt-8 sm:pb-14"
         >
-          <div className="mx-auto max-w-5xl px-4 sm:px-6">
-            <Card className="glass-panel overflow-hidden border-primary/20 bg-gradient-to-br from-primary/10 via-card/80 to-card">
-              <CardHeader>
-                <p className="text-primary text-xs font-semibold uppercase tracking-[0.2em]">
-                  Contact
-                </p>
-                <CardTitle
-                  id="contact-heading"
-                  className="text-2xl sm:text-3xl"
-                >
-                  Let&apos;s build something solid together.
-                </CardTitle>
-                <CardDescription className="text-foreground/80 max-w-xl text-base">
-                  Available for engineering collaborations, backend and blockchain work, and products that
-                  need clear architecture. Prefer email—I respond within a day when schedules allow.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <a
-                  href="mailto:kyawyelin@proton.me"
-                  className={cn(
-                    buttonVariants({ size: "lg" }),
-                    "ring-focus inline-flex w-fit items-center justify-center gap-2"
-                  )}
-                >
-                  <Mail className="size-4" />
-                  {person.email}
-                </a>
-                <a
-                  href={person.linkedIn}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className={cn(
-                    buttonVariants({ variant: "secondary", size: "lg" }),
-                    "ring-focus inline-flex w-fit items-center gap-2"
-                  )}
-                >
-                  LinkedIn profile
-                  <ArrowUpRight className="size-4" />
-                </a>
-              </CardContent>
-            </Card>
-            <p className="text-muted-foreground mt-8 text-center text-xs">
+          <div className={pageShellClass}>
+            <Reveal>
+              <Card className="glass-panel glow-card overflow-hidden border-primary/25 bg-gradient-to-br from-primary/10 via-card/70 to-card">
+                <CardHeader>
+                  <p className="text-primary text-sm font-semibold uppercase tracking-[0.24em]">
+                    Contact
+                  </p>
+                  <CardTitle id="contact-heading" className="text-3xl sm:text-4xl">
+                    Let&apos;s build something solid together.
+                  </CardTitle>
+                  <CardDescription className="text-foreground/80 max-w-xl text-lg">
+                    Available for engineering collaborations across AI, backend, and blockchain
+                    work—products that need clear architecture and scalable infrastructure. Prefer
+                    email—I respond within a day when schedules allow.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <a
+                    href="mailto:kyawyelin@proton.me"
+                    className={cn(
+                      buttonVariants({ size: "lg" }),
+                      "ring-focus neon-button inline-flex w-fit items-center justify-center gap-2"
+                    )}
+                  >
+                    <Mail className="size-5" />
+                    {person.email}
+                  </a>
+                  <a
+                    href={person.linkedIn}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className={cn(
+                      buttonVariants({ variant: "outline", size: "lg" }),
+                      "ring-focus neon-outline-button inline-flex w-fit items-center gap-2"
+                    )}
+                  >
+                    LinkedIn profile
+                    <ArrowUpRight className="size-5" />
+                  </a>
+                </CardContent>
+              </Card>
+            </Reveal>
+            <p className="text-muted-foreground mt-8 text-center text-sm">
               © {new Date().getFullYear()} {person.name}. Crafted for clarity, accessibility, and
               performance.
             </p>
