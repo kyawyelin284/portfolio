@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 
 const bentoLayout: Record<string, string> = {
   "Programming Languages":
-    "md:col-span-2 lg:col-span-2 lg:row-span-2",
+    "md:col-span-2 lg:col-span-2",
   "Back-end Technologies":
     "md:col-span-2 lg:col-span-2",
   "Cloud Technologies":
@@ -26,14 +26,14 @@ const itemGridLayout: Record<string, string> = {
 
 export function SkillsBento() {
   return (
-    <div className="skills-bento-grid grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 lg:auto-rows-fr">
+    <div className="skills-bento-grid grid grid-cols-1 items-start gap-4 md:grid-cols-2 lg:grid-cols-4">
       {skillGroups.map((group, index) => (
         <Reveal
           key={group.name}
           delay={index * 70}
-          className={cn("h-full", bentoLayout[group.name])}
+          className={cn(bentoLayout[group.name])}
         >
-          <article className="bento-card group/card flex h-full flex-col p-5 transition-all duration-300 ease-out sm:p-6">
+          <article className="bento-card group/card flex flex-col p-5 transition-all duration-300 ease-out sm:p-6">
             <div className="bento-card__shine" aria-hidden />
             <header className="relative z-10 mb-4">
               <p className="text-primary text-sm font-semibold tracking-wide sm:text-base">
@@ -45,7 +45,7 @@ export function SkillsBento() {
             </header>
             <ul
               className={cn(
-                "relative z-10 grid flex-1 auto-rows-min content-start gap-2.5",
+                "relative z-10 grid gap-2.5",
                 itemGridLayout[group.name]
               )}
             >
