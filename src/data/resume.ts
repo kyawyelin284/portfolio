@@ -28,29 +28,31 @@ export const experience = [
   {
     id: "dirace",
     company: "DIRACE Technology (Daiwa Institute of Research)",
-    role: "Senior Blockchain Engineer",
+    role: "Machine Learning Engineer (Promoted from Senior Blockchain Engineer)",
     period: "May 2024 — Oct 2025",
-    tags: ["Solidity", "Rust", "Go", "TypeScript"],
+    tags: ["Python", "RAG", "Solidity", "Go", "AWS"],
     description:
-      "Led blockchain development projects and designed secure, scalable smart contracts. Integrated on-chain features into enterprise products while addressing scalability, transaction speed, and security for decentralized applications.",
+      "Spearheaded the R&D and deployment of an enterprise-grade HR Assistant AI under direct CEO guidance, founding and leading the internal AI Engineering Team. Previously architected secure, scalable enterprise blockchain solutions on the core Blockchain Architecture Service team.",
     highlights: [
-      "Led blockchain development projects, designing secure and scalable smart contracts.",
-      "Collaborated with teams to integrate blockchain features into enterprise solutions, ensuring secure transactions and user privacy.",
-      "Addressed scalability, transaction speed, and security issues for decentralized applications.",
+      "Spearheaded the R&D and deployment of an enterprise-grade HR Assistant AI under direct strategic guidance of the CEO, forming the foundation for the company's official AI initiatives.",
+      "Founded and led the internal AI Engineering Team from the ground up, establishing workflows to architect and deliver custom Retrieval-Augmented Generation (RAG) applications and diverse AI services.",
+      "Architected and developed secure, scalable enterprise blockchain solutions using Solidity and Go within the core Blockchain Architecture Service team.",
+      "Designed resilient AWS cloud infrastructure leveraging Lambda, Elastic Load Balancing (ELB), and Nitro Enclaves for high-performance, secure, and isolated execution.",
     ],
   },
   {
     id: "gnext",
     company: "G-Next Myanmar",
-    role: "Web Developer",
+    role: "Solana Developer",
     period: "Jul 2023 — Apr 2024",
-    tags: ["React", "Solidity", "JavaScript", "Node.js"],
+    tags: ["Solana", "Rust", "React", "NFTs"],
     description:
-      "Developed a mobile warehouse management app and collaborated with a UK-holdings partner on a blockchain-based social platform. Integrated blockchain features with a focus on scalability, security, and user authentication.",
+      "Engineered and deployed decentralized applications and program logic on the Solana blockchain, and collaborated with a UK-holdings company on 'Blockchain Lure,' a blockchain-based social platform focused on data security and user privacy.",
     highlights: [
-      "Developed a mobile app for warehouse management, ensuring functionality and performance.",
-      "Collaborated with a UK-holdings company to develop a blockchain-based social media platform, enhancing data security and transparency.",
-      "Integrated blockchain features, addressing scalability and user authentication challenges.",
+      "Engineered and deployed decentralized applications (DApps) and program logic on the Solana blockchain network, improving transaction efficiency and smart contract reliability.",
+      "Collaborated with a UK-holdings company to architect 'Blockchain Lure,' a blockchain-based social media platform focused on data security, decentralized transparency, and user privacy.",
+      "Spearheaded AI research on Non-Fungible Tokens (NFTs), designing intelligent AI assistants to optimize NFT asset analysis, metadata evaluation, and market trend tracking.",
+      "Developed a specialized mobile application for warehouse management, ensuring seamless synchronization and cross-platform functionality.",
     ],
   },
   {
@@ -100,15 +102,15 @@ export const skillGroups = [
   {
     name: "Programming Languages",
     items: [
-      "Solidity",
+      "Python",
       "Go",
-      "JavaScript",
+      "Rust",
+      "Node.js",
       "TypeScript",
       "Haskell",
-      "Rust",
+      "Solidity",
       "C",
       "C++",
-      "Python",
       "PHP",
     ],
   },
@@ -118,7 +120,7 @@ export const skillGroups = [
   },
   {
     name: "Front-end Technologies",
-    items: ["React"],
+    items: ["React.js", "Next.js"],
   },
   {
     name: "Back-end Technologies",
@@ -126,7 +128,15 @@ export const skillGroups = [
   },
   {
     name: "Other Technologies",
-    items: ["Git and GitHub", "Docker"],
+    items: [
+      "Git and GitHub",
+      "Docker",
+      "Kubernetes",
+      "Kafka",
+      "Terraform",
+      "Jenkins",
+      "gRPC",
+    ],
   },
 ] as const
 
@@ -146,6 +156,11 @@ export const certifications = [
     title: "Data Management and Analysis (CRA Training)",
     org: "Huawei",
     url: "http://shixizhi.huawei.com/t/lcripj",
+  },
+  {
+    title: "Certified by micro1",
+    org: "micro1",
+    url: "https://talent.micro1.ai/profile",
   },
 ] as const
 

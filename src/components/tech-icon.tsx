@@ -98,6 +98,46 @@ const icons: Record<string, (props: { className?: string }) => ReactNode> = {
       <path d="M4 16V8l4-2v2l4-2 4 2v8l-4 2-4-2-4 2-4-2zm4-1.5 4 2V10l-4-2v6.5z" />
     </IconShell>
   ),
+  "Next.js": ({ className }) => (
+    <IconShell className={cn("text-foreground", className)}>
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c2.04 0 3.94-.61 5.52-1.66L8.7 8.2v7.3H7V6.5h2.1l8.4 11.1A9.96 9.96 0 0 0 22 12c0-5.52-4.48-10-10-10zm4.3 4.5H18v6.6l-1.7-2.3V6.5z" />
+    </IconShell>
+  ),
+  "Node.js": ({ className }) => (
+    <IconShell className={cn("text-[#5FA04E]", className)}>
+      <path d="M12 2 3 7v10l9 5 9-5V7l-9-5zm0 2.3 6.8 3.8L12 11.9 5.2 8.1 12 4.3zM5 9.6l6 3.3v6.8l-6-3.3V9.6zm14 0v6.8l-6 3.3v-6.8l6-3.3z" />
+    </IconShell>
+  ),
+  Solana: ({ className }) => (
+    <IconShell className={cn("text-[#14F195]", className)}>
+      <path d="M6 7h12l-2 2H4l2-2zm0 4h12l-2 2H4l2-2zm0 4h12l-2 2H4l2-2z" />
+    </IconShell>
+  ),
+  Kubernetes: ({ className }) => (
+    <IconShell className={cn("text-[#326CE5]", className)}>
+      <path d="M12 2 4 6v8l8 4 8-4V6l-8-4zm0 3 5 2.5L12 10 7 7.5 12 5zm-5 4.5 4 2v4.5l-4-2V9.5zm10 0v4.5l-4 2V11.5l4-2z" />
+    </IconShell>
+  ),
+  Kafka: ({ className }) => (
+    <IconShell className={cn("text-foreground", className)}>
+      <path d="M9 4a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm0 12a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm7-6a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm-1.6-2.7-3-1.6.9-1.8 3 1.6-.9 1.8zm-3 9.4 3-1.6-.9-1.8-3 1.6.9 1.8z" />
+    </IconShell>
+  ),
+  Terraform: ({ className }) => (
+    <IconShell className={cn("text-[#7B42BC]", className)}>
+      <path d="M10 4l4 2.3v4.6L10 8.6V4zm5 2.9 4 2.3v4.6l-4-2.3V6.9zM10 9.7l4 2.3V16.6l-4-2.3V9.7zm-5-3 4 2.3v4.6L5 11.3V6.7z" />
+    </IconShell>
+  ),
+  Jenkins: ({ className }) => (
+    <IconShell className={cn("text-[#D33833]", className)}>
+      <path d="M12 2C7 2 4 5.5 4 10c0 3 1.5 5.5 4 7v3h8v-3c2.5-1.5 4-4 4-7 0-4.5-3-8-8-8zm-2 7a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm4 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+    </IconShell>
+  ),
+  gRPC: ({ className }) => (
+    <IconShell className={cn("text-[#2DA6B0]", className)}>
+      <path d="M12 2 4 6.5v11L12 22l8-4.5v-11L12 2zm0 4a6 6 0 1 1 0 12 6 6 0 0 1 0-12zm0 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
+    </IconShell>
+  ),
   React: ({ className }) => (
     <IconShell className={cn("text-[#61DAFB]", className)}>
       <path d="M12 10.2a1.8 1.8 0 1 0 0 3.6 1.8 1.8 0 0 0 0-3.6zm7.3-1.1c.4-1.5.4-2.8 0-4.1-1-2.5-3.8-3.5-7.3-3.5S4.7 2.5 3.7 5c-.4 1.3-.4 2.6 0 4.1-1.2 1.6-1.8 3.1-1.8 4.4 0 2.5 3.4 4.6 8.1 4.6s8.1-2.1 8.1-4.6c0-1.3-.6-2.8-1.8-4.4zM12 5.8c3.1 0 5.6.7 5.6 1.6S15.1 9 12 9 6.4 8.3 6.4 7.4 8.9 5.8 12 5.8zM6.2 16.2c-.8-.9-1.2-1.8-1.2-2.6 0-.5.2-1 .5-1.6 1 1.2 3 2.1 5.5 2.1h.1c-.6 1.2-1.5 2-2.4 2.1-.9.1-1.8-.2-2.5-.9zm11.6 0c-.7.7-1.6 1-2.5.9-.9-.1-1.8-.9-2.4-2.1 2.5 0 4.5-.9 5.5-2.1.3.6.5 1.1.5 1.6 0 .8-.4 1.7-1.1 2.6z" />
@@ -134,6 +174,9 @@ const icons: Record<string, (props: { className?: string }) => ReactNode> = {
     </IconShell>
   ),
 }
+
+icons["React.js"] = icons.React
+icons.NodeJS = icons["Node.js"]
 
 function FallbackIcon({ className }: { className?: string }) {
   return (
