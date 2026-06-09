@@ -45,7 +45,7 @@ export function SkillsBento() {
             </header>
             <ul
               className={cn(
-                "relative z-10 grid flex-1 gap-2.5",
+                "relative z-10 grid flex-1 auto-rows-min content-start gap-2.5",
                 itemGridLayout[group.name]
               )}
             >
